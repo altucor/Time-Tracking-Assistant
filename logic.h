@@ -15,6 +15,7 @@ public:
     ~Logic();
     void setMaxAfkTime(const QTimeEdit *obj);
     void setWorkDayLimit(const QTimeEdit *obj);
+    unsigned long extractTimeFromQtimeEdit(const QTimeEdit *obj);
     void setFPS(unsigned long fps);
     void run();
     void resetTimer();
@@ -34,7 +35,6 @@ private:
     unsigned long m_maxWorkDay = 0;
     unsigned long m_pauseTime = 0;
     unsigned long m_continueTime = 0;
-    unsigned long extractTimeFromQtimeEdit(const QTimeEdit *obj);
     /// Colors
     QString m_fontRed   = tr("<font color='Red'>%1</font>");
     QString m_fontGreen = tr("<font color='Green'>%1</font>");

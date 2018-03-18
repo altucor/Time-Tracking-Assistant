@@ -4,7 +4,7 @@
 #include "logic.h"
 
 #include <QMainWindow>
-#include <QPalette>
+#include <QSettings>
 #include <QTime>
 
 namespace Ui {
@@ -22,9 +22,15 @@ public:
     void work();
 private:
     Ui::MainWindow *ui;
+    QString m_version = "1.0";
     Logic *m_timeLogicObj;
     QString m_btnStartState = "";
     QString m_btnStopState = "";
+    QString m_regPath = "HKEY_LOCAL_MACHINE\\Software\\AltucorSoftware\\TimeTrackingAssistant\\" + m_version;
+    QString m_regMaxAfkTime = "MaxAfkTime";
+    QString m_regWorkDay = "WorkDay";
+    void checkRegistryValues();
+    void updateRegistryValues();
 signals:
     void finished();
 private slots:

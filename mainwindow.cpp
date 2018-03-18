@@ -6,6 +6,8 @@
 #include <QLabel>
 #include <ctime>
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -28,7 +30,7 @@ int MainWindow::init()
     QObject::connect(m_timeLogicObj,    &Logic::updAfkBar,      ui->barAfk,                     QProgressBar::setValue);
     QObject::connect(m_timeLogicObj,    &Logic::updDayProgrBar, ui->barDayProgress,             QProgressBar::setValue);
     QObject::connect(m_timeLogicObj,    &Logic::sendStatus,     this,                           MainWindow::showStatus);
-
+    checkRegistryValues();
     return 0;
 }
 
@@ -41,8 +43,36 @@ MainWindow::~MainWindow()
 {
     m_timeLogicObj->terminate();
     delete m_timeLogicObj;
+    updateRegistryValues();
     emit finished();
     delete ui;
+}
+
+void MainWindow::checkRegistryValues()
+{
+    QSettings winRegistry(m_regPath);
+    QTime emptyObject;
+    emptyObject.setHMS(0, 0, 0, 0);
+    QTime MaxAfkTime = winRegistry.value(m_regMaxAfkTime).toTime();
+    QTime WorkDay = winRegistry.value(m_regWorkDay).toTime();
+
+    if(MaxAfkTime != ui->timeEdit_AfkTime->time() && MaxAfkTime != emptyObject){
+        ui->timeEdit_AfkTime->setTime(MaxAfkTime);
+    }
+
+    if(WorkDay != ui->timeEdit_WorkDayTime->time() && WorkDay != emptyObject){
+        ui->timeEdit_WorkDayTime->setTime(WorkDay);
+    }
+}
+
+void MainWindow::updateRegistryValues()
+{
+    QSettings winRegistry(m_regPath);
+    QVariant qvarMaxAfkTime = ui->timeEdit_AfkTime->time();
+    QVariant qvarWorkDay = ui->timeEdit_WorkDayTime->time();
+
+    winRegistry.setValue(m_regMaxAfkTime, qvarMaxAfkTime);
+    winRegistry.setValue(m_regWorkDay, qvarWorkDay);
 }
 
 void MainWindow::showStatus(QString message)

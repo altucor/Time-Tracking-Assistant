@@ -26,6 +26,13 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="minimumTime">
+     <time>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>1</second>
+     </time>
+    </property>
     <property name="displayFormat">
      <string>hh:mm:ss</string>
     </property>
@@ -255,6 +262,13 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="minimumTime">
+     <time>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>1</second>
+     </time>
+    </property>
     <property name="displayFormat">
      <string>hh:mm:ss</string>
     </property>
@@ -435,6 +449,12 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>timeEdit_AfkTime</tabstop>
+  <tabstop>timeEdit_WorkDayTime</tabstop>
+  <tabstop>pushButton_Start</tabstop>
+  <tabstop>pushButton_Stop</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
