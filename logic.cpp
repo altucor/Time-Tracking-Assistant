@@ -13,17 +13,27 @@ Logic::~Logic()
     //
 }
 
-void Logic::setMaxAfkTime(const QTimeEdit *obj)
+unsigned long Logic::extractTimeFromQtimeEdit(const QTimeEdit *obj)
 {
     int h = obj->time().hour();
     int m = obj->time().minute();
     int s = obj->time().second();
 
-    unsigned long uTime = s * 1000;
-    uTime += m * 1000 * 60;
-    uTime += h * 1000 * 60 * 60;
+    unsigned long unsignedTime = s * 1000;
+    unsignedTime += m * 1000 * 60;
+    unsignedTime += h * 1000 * 60 * 60;
 
-    m_maxAfkTime = uTime;
+    return unsignedTime;
+}
+
+void Logic::setMaxAfkTime(const QTimeEdit *obj)
+{
+    m_maxAfkTime = extractTimeFromQtimeEdit(obj);
+}
+
+void Logic::setWorkDayLimit(const QTimeEdit *obj)
+{
+    m_maxWorkDay = extractTimeFromQtimeEdit(obj);
 }
 
 void Logic::setFPS(unsigned long fps)
@@ -93,15 +103,27 @@ void Logic::updateScreen()
     }
 
     m_onlineTime = GetTickCount() - m_startTime;
-
-    emit updateMaxAfkTime( buildTime( m_maxAfkTime ) );
-    emit updateAfkTime( buildTime( getAfkTime() ) );
-    emit updateOnlineTime(  buildTime( m_onlineTime ) );
-    emit updatePcUptime( buildTime( GetTickCount() ) );
-
+    //-----------------------------------------------------------------
+    emit updMaxAfkTime( buildTime( m_maxAfkTime ) );
+    emit updAfkTime( buildTime( getAfkTime() ) );
+    emit updOnlineTime(  buildTime( m_onlineTime ) );
+    emit updPcUptime( buildTime( GetTickCount() ) );
+    //-----------------------------------------------------------------
     int afkBarValue = getAfkTime() * 100 / m_maxAfkTime;
-    emit updateAfkBar(afkBarValue);
-
+    emit updAfkBar(afkBarValue);
+    //-----------------------------------------------------------------
+    int dayProgressTime = m_onlineTime * 100 / m_maxWorkDay;
+    emit updDayProgrBar(dayProgressTime);
+    //-----------------------------------------------------------------
+    unsigned long diffTime = m_maxWorkDay - m_onlineTime;
+    if(diffTime > m_maxWorkDay){
+        emit updRemaining( buildTime( 0 ) );
+        emit updOvertime( buildTime( diffTime * -1 ) );
+    } else {
+        emit updRemaining( buildTime( diffTime ) );
+        emit updOvertime( buildTime( 0 ) );
+    }
+    //-----------------------------------------------------------------
     if(GetTickCount() - m_prevAfkTime > m_maxAfkTime){
         emit sendStatus("Status: Offline");
     } else {

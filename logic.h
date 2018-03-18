@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QString>
 #include <QtimeEdit>
+#include <QLabel>
 #include <string>
 
 class Logic : public QThread
@@ -13,6 +14,7 @@ public:
     Logic();
     ~Logic();
     void setMaxAfkTime(const QTimeEdit *obj);
+    void setWorkDayLimit(const QTimeEdit *obj);
     void setFPS(unsigned long fps);
     void run();
     void resetTimer();
@@ -27,13 +29,18 @@ private:
     unsigned long m_prevAfkTime = 0;
     unsigned long m_onlineTime = 0;
     unsigned long m_currentAfkTime = 0;
+    unsigned long m_maxWorkDay = 0;
+    unsigned long extractTimeFromQtimeEdit(const QTimeEdit *obj);
 signals:
-    void updateMaxAfkTime(QString data);
-    void updateAfkTime(QString data);
-    void updateOnlineTime(QString data);
-    void updatePcUptime(QString data);
+    void updMaxAfkTime(QString data);
+    void updAfkTime(QString data);
+    void updOnlineTime(QString data);
+    void updPcUptime(QString data);
+    void updRemaining(QString data);
+    void updOvertime(QString data);
+    void updAfkBar(int value);
+    void updDayProgrBar(int value);
     void sendStatus(QString status);
-    void updateAfkBar(int value);
 public slots:
     //
 };

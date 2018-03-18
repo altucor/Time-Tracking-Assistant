@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>206</width>
-    <height>258</height>
+    <width>200</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Time Tracker</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTimeEdit" name="timeEdit">
+   <widget class="QTimeEdit" name="timeEdit_AfkTime">
     <property name="geometry">
      <rect>
       <x>110</x>
       <y>6</y>
-      <width>71</width>
-      <height>22</height>
+      <width>75</width>
+      <height>23</height>
      </rect>
     </property>
     <property name="displayFormat">
@@ -34,11 +34,11 @@
      </time>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="static_Label_HMSMS">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>70</y>
+      <x>110</x>
+      <y>100</y>
       <width>95</width>
       <height>16</height>
      </rect>
@@ -52,7 +52,7 @@
      </font>
     </property>
     <property name="text">
-     <string> H : M : S : MS</string>
+     <string> H  M  S   MS</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_9">
@@ -75,11 +75,11 @@
      <string>Max AFK Time:</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pushButton_Start">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
+      <y>60</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -88,11 +88,11 @@
      <string>Start</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="pushButton_Stop">
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>40</y>
+      <y>60</y>
       <width>80</width>
       <height>21</height>
      </rect>
@@ -101,11 +101,11 @@
      <string>Stop</string>
     </property>
    </widget>
-   <widget class="QProgressBar" name="afkBar">
+   <widget class="QProgressBar" name="barAfk">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>200</y>
+      <y>270</y>
       <width>181</width>
       <height>21</height>
      </rect>
@@ -117,28 +117,7 @@
      <string notr="true">%p%</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>8</x>
-      <y>95</y>
-      <width>97</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>System</family>
-      <pointsize>8</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Max AFK Time:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QLabel" name="static_Label_AfkTime">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -159,7 +138,7 @@
      <string>AFK Time:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_7">
+   <widget class="QLabel" name="static_Label_OnlineTime">
     <property name="geometry">
      <rect>
       <x>23</x>
@@ -180,7 +159,7 @@
      <string>Online Time:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
+   <widget class="QLabel" name="static_Label_Remaining">
     <property name="geometry">
      <rect>
       <x>32</x>
@@ -198,31 +177,10 @@
      </font>
     </property>
     <property name="text">
-     <string>PC Uprime:</string>
+     <string>Remaining:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_1">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>95</y>
-      <width>84</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>System</family>
-      <pointsize>8</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>00:00:00:000</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="dynamic_Label_AfkTime">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -243,7 +201,7 @@
      <string>00:00:00:000</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="dynamic_Label_OnlineTime">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -264,7 +222,7 @@
      <string>00:00:00:000</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="dynamic_Label_Remaining">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -285,16 +243,183 @@
      <string>00:00:00:000</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>206</width>
-     <height>20</height>
-    </rect>
-   </property>
+   <widget class="QTimeEdit" name="timeEdit_WorkDayTime">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>30</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="displayFormat">
+     <string>hh:mm:ss</string>
+    </property>
+    <property name="time">
+     <time>
+      <hour>8</hour>
+      <minute>0</minute>
+      <second>0</second>
+     </time>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>33</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Work day time:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="static_Label_PCUptime">
+    <property name="geometry">
+     <rect>
+      <x>33</x>
+      <y>195</y>
+      <width>73</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>PC Uptime:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dynamic_Label_PCUptime">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>195</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>00:00:00:000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="static_Label_AfkTrigger">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>250</y>
+      <width>75</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>AFK Trigger</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="barDayProgress">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>320</y>
+      <width>181</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="static_Label_DayProgress">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>300</y>
+      <width>88</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Day progress</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dynamic_Label_Overtime">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>220</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>00:00:00:000</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="static_Label_Overtime">
+    <property name="geometry">
+     <rect>
+      <x>42</x>
+      <y>219</y>
+      <width>63</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>System</family>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Overtime:</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

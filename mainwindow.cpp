@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setFixedSize(QSize(206, 258));
+    this->setFixedSize(QSize(200, 380));
     m_timeLogicObj = new Logic();
     unsigned long fps = 60;
     m_timeLogicObj->setFPS(fps);
@@ -19,13 +19,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 int MainWindow::init()
 {
-    QObject::connect(this, MainWindow::finished, m_timeLogicObj, Logic::terminate, Qt::DirectConnection);
-    QObject::connect(m_timeLogicObj, &Logic::updateMaxAfkTime,  ui->label_1,    QLabel::setText);
-    QObject::connect(m_timeLogicObj, &Logic::updateAfkTime,     ui->label_2,    QLabel::setText);
-    QObject::connect(m_timeLogicObj, &Logic::updateOnlineTime,  ui->label_3,    QLabel::setText);
-    QObject::connect(m_timeLogicObj, &Logic::updatePcUptime,    ui->label_4,    QLabel::setText);
-    QObject::connect(m_timeLogicObj, &Logic::sendStatus,        this,           MainWindow::showStatus);
-    QObject::connect(m_timeLogicObj, &Logic::updateAfkBar,      ui->afkBar,     QProgressBar::setValue);
+    QObject::connect(this,              MainWindow::finished,   m_timeLogicObj,                 Logic::terminate, Qt::DirectConnection);
+    QObject::connect(m_timeLogicObj,    &Logic::updAfkTime,     ui->dynamic_Label_AfkTime,      QLabel::setText);
+    QObject::connect(m_timeLogicObj,    &Logic::updOnlineTime,  ui->dynamic_Label_OnlineTime,   QLabel::setText);
+    QObject::connect(m_timeLogicObj,    &Logic::updPcUptime,    ui->dynamic_Label_PCUptime,     QLabel::setText);
+    QObject::connect(m_timeLogicObj,    &Logic::updRemaining,   ui->dynamic_Label_Remaining,    QLabel::setText);
+    QObject::connect(m_timeLogicObj,    &Logic::updOvertime,    ui->dynamic_Label_Overtime,     QLabel::setText);
+    QObject::connect(m_timeLogicObj,    &Logic::updAfkBar,      ui->barAfk,                     QProgressBar::setValue);
+    QObject::connect(m_timeLogicObj,    &Logic::updDayProgrBar, ui->barDayProgress,             QProgressBar::setValue);
+    QObject::connect(m_timeLogicObj,    &Logic::sendStatus,     this,                           MainWindow::showStatus);
 
     return 0;
 }
@@ -48,14 +50,15 @@ void MainWindow::showStatus(QString message)
     ui->statusBar->showMessage(message, 1000);
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButton_Start_clicked()
 {
-    m_timeLogicObj->setMaxAfkTime(ui->timeEdit);
+    m_timeLogicObj->setMaxAfkTime(ui->timeEdit_AfkTime);
+    m_timeLogicObj->setWorkDayLimit(ui->timeEdit_WorkDayTime);
     m_timeLogicObj->resetTimer();
     m_timeLogicObj->start();
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_Stop_clicked()
 {
     m_timeLogicObj->terminate();
 }
