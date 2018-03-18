@@ -4,6 +4,7 @@
 #include "logic.h"
 
 #include <QMainWindow>
+#include <QPalette>
 #include <QTime>
 
 namespace Ui {
@@ -22,9 +23,10 @@ public:
 private:
     Ui::MainWindow *ui;
     Logic *m_timeLogicObj;
+    QString m_btnStartState = "";
+    QString m_btnStopState = "";
 signals:
     void finished();
-
 private slots:
     void showStatus(QString message);
     void on_pushButton_Start_clicked();

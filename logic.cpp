@@ -72,6 +72,17 @@ unsigned long Logic::getAfkTime()
     return GetTickCount() - getLastInputTime();
 }
 
+void Logic::setPauseTime()
+{
+    m_pauseTime = GetTickCount();
+}
+
+void Logic::setContinueTime()
+{
+    m_continueTime = GetTickCount();
+    m_startTime += m_continueTime - m_pauseTime;
+}
+
 QString Logic::buildTime(unsigned long time)
 {
     unsigned long ms = time % 1000;
@@ -104,7 +115,6 @@ void Logic::updateScreen()
 
     m_onlineTime = GetTickCount() - m_startTime;
     //-----------------------------------------------------------------
-    emit updMaxAfkTime( buildTime( m_maxAfkTime ) );
     emit updAfkTime( buildTime( getAfkTime() ) );
     emit updOnlineTime(  buildTime( m_onlineTime ) );
     emit updPcUptime( buildTime( GetTickCount() ) );
@@ -117,11 +127,11 @@ void Logic::updateScreen()
     //-----------------------------------------------------------------
     unsigned long diffTime = m_maxWorkDay - m_onlineTime;
     if(diffTime > m_maxWorkDay){
-        emit updRemaining( buildTime( 0 ) );
-        emit updOvertime( buildTime( diffTime * -1 ) );
+        emit updRemaining( m_fontGreen.arg( buildTime( 0 ) ) );
+        emit updOvertime( m_fontRed.arg( buildTime( diffTime * -1 ) ) );
     } else {
-        emit updRemaining( buildTime( diffTime ) );
-        emit updOvertime( buildTime( 0 ) );
+        emit updRemaining( m_fontBlack.arg( buildTime( diffTime ) ) );
+        emit updOvertime( m_fontBlack.arg( buildTime( 0 ) ) );
     }
     //-----------------------------------------------------------------
     if(GetTickCount() - m_prevAfkTime > m_maxAfkTime){

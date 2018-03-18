@@ -52,13 +52,39 @@ void MainWindow::showStatus(QString message)
 
 void MainWindow::on_pushButton_Start_clicked()
 {
-    m_timeLogicObj->setMaxAfkTime(ui->timeEdit_AfkTime);
-    m_timeLogicObj->setWorkDayLimit(ui->timeEdit_WorkDayTime);
-    m_timeLogicObj->resetTimer();
-    m_timeLogicObj->start();
+    QString btnText = ui->pushButton_Start->text();
+    if(btnText == "Start" || btnText == "Restart"){
+        ui->timeEdit_AfkTime->setEnabled(false);
+        ui->timeEdit_WorkDayTime->setEnabled(false);
+
+        m_timeLogicObj->setMaxAfkTime(ui->timeEdit_AfkTime);
+        m_timeLogicObj->setWorkDayLimit(ui->timeEdit_WorkDayTime);
+        m_timeLogicObj->resetTimer();
+        m_timeLogicObj->start();
+
+        ui->pushButton_Start->setText("Restart");
+        ui->pushButton_Stop->setText("Pause");
+    } else if(btnText == "Resume"){
+        m_timeLogicObj->setContinueTime();
+        m_timeLogicObj->start();
+        ui->pushButton_Start->setText("Restart");
+        ui->pushButton_Stop->setText("Pause");
+    }
 }
 
 void MainWindow::on_pushButton_Stop_clicked()
 {
-    m_timeLogicObj->terminate();
+    QString btnText = ui->pushButton_Stop->text();
+    if(btnText == "Stop"){
+        m_timeLogicObj->terminate();
+
+        ui->timeEdit_AfkTime->setEnabled(true);
+        ui->timeEdit_WorkDayTime->setEnabled(true);
+        ui->pushButton_Start->setText("Start");
+    } else if(btnText == "Pause") {
+        m_timeLogicObj->setPauseTime();
+        m_timeLogicObj->terminate();
+        ui->pushButton_Start->setText("Resume");
+        ui->pushButton_Stop->setText("Stop");
+    }
 }
