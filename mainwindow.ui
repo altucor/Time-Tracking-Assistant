@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>200</width>
-    <height>382</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>100</y>
+      <y>120</y>
       <width>95</width>
       <height>16</height>
      </rect>
@@ -99,6 +99,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_Stop">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -115,7 +118,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>270</y>
+      <y>290</y>
       <width>181</width>
       <height>21</height>
      </rect>
@@ -131,7 +134,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>120</y>
+      <y>140</y>
       <width>65</width>
       <height>16</height>
      </rect>
@@ -152,7 +155,7 @@
     <property name="geometry">
      <rect>
       <x>23</x>
-      <y>145</y>
+      <y>165</y>
       <width>82</width>
       <height>16</height>
      </rect>
@@ -173,7 +176,7 @@
     <property name="geometry">
      <rect>
       <x>32</x>
-      <y>170</y>
+      <y>190</y>
       <width>73</width>
       <height>16</height>
      </rect>
@@ -194,7 +197,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>120</y>
+      <y>140</y>
       <width>84</width>
       <height>16</height>
      </rect>
@@ -215,7 +218,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>145</y>
+      <y>165</y>
       <width>84</width>
       <height>16</height>
      </rect>
@@ -236,7 +239,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>170</y>
+      <y>190</y>
       <width>84</width>
       <height>16</height>
      </rect>
@@ -304,7 +307,7 @@
     <property name="geometry">
      <rect>
       <x>33</x>
-      <y>195</y>
+      <y>215</y>
       <width>73</width>
       <height>16</height>
      </rect>
@@ -325,7 +328,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>195</y>
+      <y>215</y>
       <width>84</width>
       <height>16</height>
      </rect>
@@ -346,7 +349,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>250</y>
+      <y>270</y>
       <width>75</width>
       <height>16</height>
      </rect>
@@ -366,7 +369,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>320</y>
+      <y>340</y>
       <width>181</width>
       <height>23</height>
      </rect>
@@ -379,7 +382,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>300</y>
+      <y>320</y>
       <width>88</width>
       <height>16</height>
      </rect>
@@ -399,7 +402,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>220</y>
+      <y>240</y>
       <width>84</width>
       <height>16</height>
      </rect>
@@ -420,7 +423,7 @@
     <property name="geometry">
      <rect>
       <x>42</x>
-      <y>219</y>
+      <y>239</y>
       <width>63</width>
       <height>16</height>
      </rect>
@@ -435,6 +438,44 @@
     </property>
     <property name="text">
      <string>Overtime:</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_onTop">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>115</y>
+      <width>72</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>On top</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider_opacity">
+    <property name="geometry">
+     <rect>
+      <x>25</x>
+      <y>90</y>
+      <width>160</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="whatsThis">
+     <string>Window opacity</string>
+    </property>
+    <property name="minimum">
+     <number>5</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>

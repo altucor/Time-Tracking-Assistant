@@ -29,14 +29,20 @@ private:
     QString m_regPath = "HKEY_LOCAL_MACHINE\\Software\\AltucorSoftware\\TimeTrackingAssistant\\" + m_version;
     QString m_regMaxAfkTime = "MaxAfkTime";
     QString m_regWorkDay = "WorkDay";
+    QString m_regOnTopFlag = "OnTopFlag";
+    QString m_regOpacity = "Opacity";
     void checkRegistryValues();
     void updateRegistryValues();
+    void resetAllValues();
+    void changeOpacity(int value);
 signals:
     void finished();
 private slots:
     void showStatus(QString message);
     void on_pushButton_Start_clicked();
     void on_pushButton_Stop_clicked();
+public slots:
+    void setOnTopFlag(int state);
 };
 
 #endif // MAINWINDOW_H
